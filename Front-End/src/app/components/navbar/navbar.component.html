@@ -1,0 +1,37 @@
+<div class="navbar-main">
+    <div class="navbar-logo">
+        <a class="navbar-direct-logo" routerLink="/">YumeKōdo</a>
+    </div>
+    <div class="navbar-links" [class.mobile-menu-open]="isMobileMenuOpen">
+        <a class="direct-home" routerLink="/" (click)="closeMobileMenu()">Home</a>
+        <a class="direct-games" routerLink="/games" (click)="closeMobileMenu()">Games</a>
+        <a class="direct-ai" routerLink="/yume-chat" (click)="closeMobileMenu()">Yume AI</a>
+        <a class="direct-about" routerLink="/about" (click)="closeMobileMenu()">About</a>
+        <div class="mobile-auth-buttons" *ngIf="!isLoggedIn">
+            <a routerLink="/sign-up" (click)="closeMobileMenu()">
+                <button class="sign-up-button">Sign-Up</button>
+            </a>
+            <a routerLink="/sign-in" (click)="closeMobileMenu()">
+                <button class="sign-in-button">Sign-In</button>
+            </a>
+        </div>
+    </div>
+    <div class="navbar-buttons desktop-only">
+        <div *ngIf="!isLoggedIn" class="auth-buttons">
+            <a routerLink="/sign-up">
+                <button class="sign-up-button">Sign-Up</button>
+            </a>
+            <a routerLink="/sign-in">
+                <button class="sign-in-button">Sign-In</button>
+            </a>
+        </div>
+        <app-sidebar *ngIf="isLoggedIn"></app-sidebar>
+    </div>
+    <div class="mobile-menu-toggle" (click)="toggleMobileMenu()">
+        <span [class.active]="isMobileMenuOpen"></span>
+        <span [class.active]="isMobileMenuOpen"></span>
+        <span [class.active]="isMobileMenuOpen"></span>
+    </div>
+    
+    <div class="mobile-menu-overlay" [class.active]="isMobileMenuOpen" (click)="closeMobileMenu()"></div>
+</div>

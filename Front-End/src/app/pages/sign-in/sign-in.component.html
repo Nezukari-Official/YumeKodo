@@ -1,0 +1,18 @@
+<div class="sign-in-body-main">
+  <div class="sign-in-body-inner">
+    <div class="sign-in-body-header">
+      <h2 class="sign-in-body-header-direct">Sign-In</h2>
+    </div>
+    <div class="sign-in-email-collection">
+      <h3 class="email-title-direct">Enter Your Email:</h3>
+      <input class="email-input-direct" type="email" placeholder="..." [(ngModel)]="signInData.Email">
+    </div>
+    <div class="sign-in-password-collection">
+      <h3 class="password-title-direct">Enter Your Password:</h3>
+      <input class="password-input-direct" type="password" placeholder="..." [(ngModel)]="signInData.PasswordHash">
+    </div>
+    <div class="sign-in-confirm-button-div">
+      <button class="btn-confirm-direct" (click)="onSubmit()">Confirm</button>
+    </div>
+  </div>
+</div>

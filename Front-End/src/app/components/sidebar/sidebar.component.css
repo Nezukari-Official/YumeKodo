@@ -1,0 +1,518 @@
+.profile-button-container {
+  position: relative;
+  z-index: 1001;
+}
+
+.profile-button {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background: rgba(128, 0, 0, 0.1);
+  border: 2px solid #800000;
+  border-radius: 8px;
+  padding: 15px 25px;
+  color: #800000;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: bold;
+}
+
+.profile-button:hover,
+.profile-button.active {
+  background: #800000;
+  color: white;
+}
+
+.profile-avatar {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid #800000;
+}
+
+.avatar-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-name {
+  font-size: 23px;
+  max-width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.profile-arrow {
+  font-size: 18px;
+  transition: transform 0.3s ease;
+}
+
+.profile-arrow.rotated {
+  transform: rotate(180deg);
+}
+
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.sidebar-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.profile-sidebar {
+  position: fixed;
+  top: 0;
+  right: -400px;
+  width: 350px;
+  height: 100vh;
+  background: #141414;
+  border-left: 3px solid #800000;
+  z-index: 1001;
+  transition: right 0.3s ease;
+  box-shadow: -5px 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.profile-sidebar.open {
+  right: 0;
+}
+
+.sidebar-header {
+  padding: 20px;
+  border-bottom: 1px solid #333;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.close-button {
+  background: transparent;
+  border: none;
+  color: #800000;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.close-button:hover {
+  background: rgba(128, 0, 0, 0.1);
+  transform: scale(1.1);
+}
+
+.sidebar-content {
+  padding: 30px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+.profile-picture {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 4px solid #800000;
+  overflow: hidden;
+  box-shadow: 0 5px 20px rgba(128, 0, 0, 0.3);
+}
+
+.profile-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.user-info {
+  text-align: center;
+  color: white;
+}
+
+.user-nickname {
+  font-size: 28px;
+  font-weight: bold;
+  margin: 0 0 10px 0;
+  color: #800000;
+}
+
+.user-email {
+  font-size: 20px;
+  margin: 0 0 15px 0;
+  opacity: 0.8;
+  word-break: break-all;
+}
+
+.role-badge {
+  display: inline-block;
+  padding: 5px 15px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.role-creator {
+  background: linear-gradient(45deg, #800000, #a00000);
+  color: white;
+  border: 2px solid #600000;
+}
+
+.role-admin {
+  background: linear-gradient(45deg, #800000, #900000);
+  color: white;
+  border: 2px solid #700000;
+}
+
+.role-user {
+  background: transparent;
+  color: #800000;
+  border: 2px solid #800000;
+}
+
+.sidebar-actions {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.action-button {
+  width: 100%;
+  padding: 15px 20px;
+  border: 2px solid #800000;
+  border-radius: 8px;
+  background: transparent;
+  color: #800000;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+}
+
+.action-button:hover {
+  background: #800000;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(128, 0, 0, 0.3);
+}
+
+.edit-button:hover {
+  background: linear-gradient(45deg, #800000, #900000);
+}
+
+.logout-button:hover {
+  background: linear-gradient(45deg, #800000, #600000);
+}
+
+.button-icon {
+  font-size: 25px;
+}
+
+@media (max-width: 768px) {
+  .profile-sidebar {
+    width: 100%;
+    right: -100%;
+  }
+  
+  .profile-button {
+    padding: 6px 12px;
+    gap: 8px;
+  }
+  
+  .profile-avatar {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .profile-name {
+    font-size: 14px;
+    max-width: 80px;
+  }
+  
+  .sidebar-content {
+    padding: 20px 15px;
+    gap: 25px;
+  }
+  
+  .profile-picture {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .user-nickname {
+    font-size: 20px;
+  }
+  
+  .user-email {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .action-button {
+    padding: 12px 16px;
+    font-size: 14px;
+  }
+  
+  .profile-picture {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+.edit-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 1999;
+  animation: fadeIn 0.3s ease;
+}
+
+.edit-account-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #1a1a1a;
+  border: 3px solid #800000;
+  border-radius: 15px;
+  width: 90%;
+  max-width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+  z-index: 2000;
+  animation: slideIn 0.3s ease;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -60%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 2px solid #800000;
+}
+
+.modal-header h2 {
+  color: #800000;
+  margin: 0;
+  font-size: 28px;
+}
+
+.close-modal-btn {
+  background: transparent;
+  border: none;
+  color: #800000;
+  font-size: 30px;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.close-modal-btn:hover {
+  background: rgba(128, 0, 0, 0.1);
+  transform: rotate(90deg);
+}
+
+.modal-body {
+  padding: 30px 20px;
+}
+
+.update-message {
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: bold;
+}
+
+.update-message.success {
+  background: rgba(40, 167, 69, 0.2);
+  border: 2px solid #28a745;
+  color: #28a745;
+}
+
+.update-message.error {
+  background: rgba(220, 53, 69, 0.2);
+  border: 2px solid #dc3545;
+  color: #dc3545;
+}
+
+.edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  color: #800000;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.form-input {
+  background: #141414;
+  border: 2px solid #333;
+  color: white;
+  padding: 12px;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #800000;
+}
+
+.form-input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.form-hint {
+  color: #666;
+  font-size: 12px;
+}
+
+.profile-preview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 15px;
+  background: #141414;
+  border: 2px solid #333;
+  border-radius: 8px;
+}
+
+.preview-label {
+  color: #800000;
+  font-weight: bold;
+  margin: 0;
+}
+
+.preview-image {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #800000;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+  padding: 20px;
+  border-top: 2px solid #800000;
+}
+
+.cancel-btn,
+.save-btn {
+  padding: 12px 25px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.cancel-btn {
+  background: transparent;
+  border: 2px solid #800000;
+  color: #800000;
+}
+
+.cancel-btn:hover:not(:disabled) {
+  background: rgba(128, 0, 0, 0.1);
+}
+
+.save-btn {
+  background: linear-gradient(45deg, #800000, #a00000);
+  border: none;
+  color: white;
+}
+
+.save-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(128, 0, 0, 0.4);
+}
+
+.cancel-btn:disabled,
+.save-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+@media (max-width: 768px) {
+  .edit-account-modal {
+    width: 95%;
+    max-height: 85vh;
+  }
+  
+  .modal-header h2 {
+    font-size: 24px;
+  }
+  
+  .modal-body {
+    padding: 20px 15px;
+  }
+  
+  .form-input {
+    font-size: 14px;
+  }
+}

@@ -1,0 +1,299 @@
+.verify-email-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+  gap: 60px;
+  flex-wrap: wrap;
+}
+
+.verify-email-card {
+  background: #1a1a1a;
+  border: 3px solid #800000;
+  border-radius: 15px;
+  padding: 40px;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: 0 20px 60px rgba(128, 0, 0, 0.3);
+  animation: slideUp 0.5s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.logo-section {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.logo-text-1 {
+  color: #800000;
+  font-size: 55px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.logo-text-2 {
+  color: #fff;
+  font-size: 55px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.page-title {
+  color: #800000;
+  font-size: 45px;
+  margin: 0 0 10px 0;
+  font-weight: bold;
+}
+
+.page-subtitle {
+  color: #ccc;
+  font-size: 20px;
+  margin: 0;
+}
+
+.card-body {
+  margin-bottom: 20px;
+}
+
+.message {
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.success-message {
+  background: rgba(40, 167, 69, 0.2);
+  border: 2px solid #28a745;
+  color: #28a745;
+}
+
+.error-message {
+  background: rgba(220, 53, 69, 0.2);
+  border: 2px solid #dc3545;
+  color: #dc3545;
+}
+
+.message-icon {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.verify-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  color: #800000;
+  font-weight: bold;
+  font-size: 25px;
+}
+
+.form-input {
+  background: #141414;
+  border: 2px solid #333;
+  color: white;
+  padding: 15px;
+  border-radius: 8px;
+  font-size: 20px;
+  transition: border-color 0.3s ease;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #800000;
+}
+
+.form-input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.code-input {
+  text-align: center;
+  font-size: 24px;
+  letter-spacing: 8px;
+  font-weight: bold;
+}
+
+.verify-btn {
+  background: linear-gradient(45deg, #800000, #a00000);
+  color: white;
+  border: none;
+  padding: 15px;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+}
+
+.verify-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(128, 0, 0, 0.4);
+}
+
+.verify-btn:disabled {
+  background: #444;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.resend-section {
+  text-align: center;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #333;
+}
+
+.resend-text {
+  color: #ccc;
+  font-size: 14px;
+  margin: 0 0 10px 0;
+}
+
+.resend-btn {
+  background: transparent;
+  border: 2px solid #800000;
+  color: #800000;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 25px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.resend-btn:hover:not(:disabled) {
+  background: rgba(128, 0, 0, 0.1);
+}
+
+.resend-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.card-footer {
+  text-align: center;
+  padding-top: 20px;
+  border-top: 1px solid #333;
+}
+
+.back-link {
+  color: #800000;
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.back-link:hover {
+  color: #a00000;
+  text-decoration: underline;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+@media (max-width: 768px) {
+  .verify-email-container {
+    padding: 20px;
+    flex-direction: column;
+  }
+  
+  .verify-email-card {
+    padding: 30px 20px;
+  }
+  
+  .logo-text-1,
+  .logo-text-2 {
+    font-size: 40px;
+  }
+  
+  .page-title {
+    font-size: 28px;
+  }
+  
+  .code-input {
+    font-size: 20px;
+  }
+  
+  .yume-image {
+    width: 250px;
+  }
+}
+
+@media (max-width: 480px) {
+  .verify-email-card {
+    padding: 25px 15px;
+  }
+  
+  .logo-text-1,
+  .logo-text-2 {
+    font-size: 32px;
+  }
+  
+  .page-title {
+    font-size: 24px;
+  }
+  
+  .page-subtitle {
+    font-size: 14px;
+  }
+  
+  .form-input {
+    padding: 12px;
+    font-size: 14px;
+  }
+  
+  .code-input {
+    font-size: 18px;
+    letter-spacing: 6px;
+  }
+  
+  .verify-btn {
+    padding: 12px;
+    font-size: 16px;
+  }
+  
+  .yume-image {
+    width: 200px;
+  }
+}

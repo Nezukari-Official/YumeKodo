@@ -1,0 +1,283 @@
+.navbar-main {
+  border-bottom: solid 1px #fff;
+  background-color: #141414;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px;
+  position: relative;
+  z-index: 1000;
+}
+
+.navbar-logo {
+  flex-shrink: 0;
+}
+
+.navbar-direct-logo {
+  color: #800000;
+  font-size: 75px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.navbar-direct-logo:hover {
+  color: #a00000;
+  text-shadow: 0 0 10px rgba(128, 0, 0, 0.5);
+}
+
+.navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 45px;
+  font-size: 25px;
+}
+
+.navbar-links a {
+  color: #fff;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  padding: 8px 16px;
+  border-radius: 5px;
+  position: relative;
+}
+
+.navbar-links a:hover {
+  color: #800000;
+  background-color: rgba(128, 0, 0, 0.1);
+}
+
+.navbar-links a.direct-ai {
+  color: #800000;
+  font-weight: bold;
+}
+
+.navbar-links a.direct-ai:hover {
+  color: #a00000;
+  background-color: rgba(128, 0, 0, 0.2);
+}
+
+.navbar-buttons {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-size: 25px;
+  flex-shrink: 0;
+}
+
+.sign-up-button,
+.sign-in-button {
+  background-color: transparent;
+  border: solid 2px #800000;
+  border-radius: 5px;
+  color: #800000;
+  padding: 12px 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 20px;
+  font-weight: bold;
+  margin-left: 25px;
+  margin-right: 25px;
+}
+
+.sign-up-button:hover,
+.sign-in-button:hover {
+  background-color: #800000;
+  color: white;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 15px rgba(128, 0, 0, 0.3);
+}
+
+.mobile-menu-toggle {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  padding: 10px;
+  z-index: 1001;
+}
+
+.mobile-menu-toggle span {
+  width: 30px;
+  height: 3px;
+  background-color: #800000;
+  margin: 3px 0;
+  transition: all 0.3s ease;
+  border-radius: 2px;
+}
+
+.mobile-menu-toggle span.active:nth-child(1) {
+  transform: rotate(45deg) translate(9px, 9px);
+}
+
+.mobile-menu-toggle span.active:nth-child(2) {
+  opacity: 0;
+}
+
+.mobile-menu-toggle span.active:nth-child(3) {
+  transform: rotate(-45deg) translate(7px, -6px);
+}
+
+.mobile-auth-buttons {
+  display: none;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 30px;
+  padding-top: 30px;
+  border-top: 1px solid rgba(128, 0, 0, 0.3);
+}
+
+.mobile-menu-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.mobile-menu-overlay.active {
+  opacity: 1;
+}
+
+.desktop-only {
+  display: flex;
+}
+
+@media (max-width: 1024px) {
+  .navbar-direct-logo {
+    font-size: 60px;
+  }
+  
+  .navbar-links {
+    gap: 30px;
+    font-size: 22px;
+  }
+  
+  .navbar-buttons {
+    font-size: 22px;
+    gap: 15px;
+  }
+  
+  .sign-up-button,
+  .sign-in-button {
+    padding: 10px 16px;
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar-main {
+    padding: 15px 20px;
+  }
+  
+  .navbar-direct-logo {
+    font-size: 45px;
+  }
+  
+  .navbar-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    height: 100vh;
+    width: 80%;
+    max-width: 400px;
+    background-color: #141414;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    font-size: 28px;
+    transition: right 0.3s ease;
+    z-index: 1000;
+    border-left: 1px solid #800000;
+  }
+  
+  .navbar-links.mobile-menu-open {
+    right: 0;
+  }
+  
+  .navbar-links a {
+    padding: 15px 25px;
+    width: 80%;
+    text-align: center;
+    border: 1px solid transparent;
+  }
+  
+  .navbar-links a:hover {
+    border-color: #800000;
+  }
+  
+  .desktop-only {
+    display: none;
+  }
+  
+  .mobile-menu-toggle {
+    display: flex;
+  }
+  
+  .mobile-auth-buttons {
+    display: flex;
+  }
+  
+  .mobile-menu-overlay {
+    display: block;
+  }
+  
+  .mobile-auth-buttons .sign-up-button,
+  .mobile-auth-buttons .sign-in-button {
+    width: 200px;
+    padding: 15px;
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar-main {
+    padding: 10px 15px;
+  }
+  
+  .navbar-direct-logo {
+    font-size: 35px;
+  }
+  
+  .navbar-links {
+    width: 90%;
+    gap: 35px;
+    font-size: 24px;
+  }
+  
+  .mobile-auth-buttons .sign-up-button,
+  .mobile-auth-buttons .sign-in-button {
+    width: 180px;
+    font-size: 20px;
+  }
+}
+
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.navbar-links.mobile-menu-open {
+  animation: slideInRight 0.3s ease-out;
+}
+
+.navbar-links a.active {
+  color: #800000;
+  background-color: rgba(128, 0, 0, 0.1);
+}
+
+html {
+  scroll-behavior: smooth;
+}

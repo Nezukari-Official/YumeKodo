@@ -1,0 +1,111 @@
+.about-page-main-div {
+    justify-content: center;
+    flex-direction: column;
+    margin-bottom: 100px;
+    align-items: center;
+    text-align: center;
+    margin-top: 100px;
+    display: flex;
+
+    .about-page-inner-div {
+        .header-text-label-div {
+            margin-bottom: 100px;
+
+            .header-text-direct {
+                font-size: 100px;
+                color: #800000;
+            }
+        }
+
+        .text-label-general-info {
+            margin-bottom: 100px;
+
+            .general-text-direct {
+                margin-bottom: 50px;
+                color: #800000;
+            }
+
+            .general-text-direct-little-pt-1 {
+                font-size: 25px;
+            }
+            .general-text-direct-little-pt-2 {
+                font-size: 25px;
+            }
+            .general-text-direct-little-pt-3 {
+                font-size: 25px;
+            }
+            .general-text-direct-little-pt-4 {
+                font-size: 25px;
+            }
+            .general-text-direct-little-pt-5 {
+                font-size: 25px;
+            }
+        }
+
+        .text-label-yume-info {
+            margin-bottom: 100px;
+
+            .yume-text-direct {
+                margin-bottom: 50px;
+                color: #800000;
+            }
+
+            .yume-text-direct-little-pt-1 {
+                font-size: 25px;
+            }
+            .yume-text-direct-little-pt-2 {
+                font-size: 25px;
+            }
+            .yume-text-direct-little-pt-3 {
+                font-size: 25px;
+            }
+        }
+
+        .text-label-games-info {
+            margin-bottom: 100px;
+
+            .game-text-direct {
+                margin-bottom: 50px;
+                color: #800000;
+            }
+
+            .game-text-direct-little-pt-1 {
+                font-size: 25px;
+            }
+            .game-text-direct-little-pt-2 {
+                font-size: 25px;
+            }
+            .game-text-direct-little-pt-3 {
+                font-size: 25px;
+            }
+            .game-text-direct-little-pt-4 {
+                font-size: 25px;
+            }
+            .game-text-direct-little-pt-5 {
+                font-size: 25px;
+            }
+        }
+
+        .text-label-developer-info {
+            margin-bottom: 45px;
+
+            .developer-text-direct {
+                margin-bottom: 50px;
+                color: #800000;
+            }
+
+            .developer-text-direct-little-pt-1 {
+                font-size: 25px;
+            }
+            .developer-text-direct-little-pt-2 {
+                font-size: 25px;
+            }
+            .developer-text-direct-little-pt-3 {
+                font-size: 25px;
+            }
+            .developer-text-direct-little-pt-4 {
+                font-size: 25px;
+            }
+        }
+    }
+}

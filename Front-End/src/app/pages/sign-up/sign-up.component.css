@@ -1,0 +1,115 @@
+.sign-up-body-main {
+    justify-content: center;
+    margin-bottom: 50px;
+    align-items: center;
+    text-align: center;
+    margin-top: 50px;
+    display: flex;
+
+    .sign-up-body-inner {
+        border: solid 3px #800000;
+        border-radius: 10px;
+        padding: 35px;
+
+        .sign-up-body-header {
+            margin-bottom: 45px;
+
+            .sign-up-body-header-direct {
+                color: #800000;
+                font-size: 55px;
+            }
+        }
+
+        .sign-up-nickname-collection {
+            margin-bottom: 35px;
+            margin-top: 35px;
+
+            .nickname-input-direct {
+                border: solid 3px #800000;
+                background-color: #141414;
+                border-radius: 5px;
+                font-size: 25px;
+                color: #fff;
+                padding: 8px;
+                height: 45px;
+                width: 280px;
+            }
+        }
+
+        .sign-up-email-collection {
+            margin-bottom: 35px;
+            margin-top: 35px;
+
+            .email-input-direct {
+                border: solid 3px #800000;
+                background-color: #141414;
+                border-radius: 5px;
+                font-size: 25px;
+                color: #fff;
+                padding: 8px;
+                height: 45px;
+                width: 280px;
+            }
+        }
+
+        .sign-up-email-collection {
+            margin-bottom: 35px;
+            margin-top: 35px;
+
+            .email-input-direct {
+                border: solid 3px #800000;
+                background-color: #141414;
+                border-radius: 5px;
+                font-size: 25px;
+                color: #fff;
+                padding: 8px;
+                height: 45px;
+                width: 280px;
+            }
+        }
+
+        .sign-up-password-collection {
+            margin-bottom: 35px;
+            margin-top: 35px;
+
+            .password-input-direct {
+                border: solid 3px #800000;
+                background-color: #141414;
+                border-radius: 5px;
+                font-size: 25px;
+                color: #fff;
+                padding: 8px;
+                height: 45px;
+                width: 280px;
+            }
+        }
+
+        .sign-up-password-repeat-collection {
+            margin-bottom: 35px;
+            margin-top: 35px;
+
+            .password-repeat-input-direct {
+                border: solid 3px #800000;
+                background-color: #141414;
+                border-radius: 5px;
+                font-size: 25px;
+                color: #fff;
+                padding: 8px;
+                height: 45px;
+                width: 280px;
+            }
+        }
+
+        .sign-up-confirm-button-div {
+            .btn-confirm-direct {
+                background-color: #141414;
+                border: solid 2px #800000;
+                border-radius: 5px;
+                color: #800000;
+                font-size: 25px;
+                padding: 12px;
+                width: 245px;
+            }
+        }
+    }
+}

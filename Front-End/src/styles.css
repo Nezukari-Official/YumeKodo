@@ -1,0 +1,47 @@
+body {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color: #1f1f1f;
+    color: #ffffff;
+}
+
+a {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+input {
+  background-color: white;
+  border: 1px solid #ccc;
+  box-shadow: none;
+  outline: none;
+}
+
+input:focus,
+input:hover,
+input:active {
+  background-color: white;
+  border: 1px solid #ccc;
+  box-shadow: none;
+  outline: none;
+}
+
+
+
+h1 {
+    cursor: default;
+}
+h2 {
+    cursor: default;
+}
+h3 {
+    cursor: default;
+}
+h4 {
+    cursor: default;
+}
+h5 {
+    cursor: default;
+}
+h6 {
+    cursor: default;
+}

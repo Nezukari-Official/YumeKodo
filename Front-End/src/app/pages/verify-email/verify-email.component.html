@@ -1,0 +1,69 @@
+<div class="verify-email-container">
+  <div class="verify-email-card">
+    <div class="card-header">
+      <div class="logo-section">
+        <h1 class="logo-text-1">Yume</h1>
+        <h1 class="logo-text-2">Kōdo</h1>
+      </div>
+      <h2 class="page-title">Verify Your Email</h2>
+      <p class="page-subtitle">We've Sent A 4 Digit Code To Your Email</p>
+    </div>
+    <div class="card-body">
+      <div *ngIf="successMessage" class="message success-message">
+        <span class="message-icon">✓</span>
+        {{ successMessage }}
+      </div>
+      <div *ngIf="errorMessage" class="message error-message">
+        <span class="message-icon">⚠</span>
+        {{ errorMessage }}
+      </div>
+      <form class="verify-form" *ngIf="!successMessage">
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input 
+            id="email"
+            type="email" 
+            class="form-input"
+            [(ngModel)]="email"
+            name="email"
+            placeholder="Example@gmail.com"
+            [disabled]="isVerifying"
+            required>
+        </div>
+        <div class="form-group">
+          <label for="code">Verification Code</label>
+          <input 
+            id="code"
+            type="text" 
+            class="form-input code-input"
+            [(ngModel)]="verificationCode"
+            name="verificationCode"
+            placeholder="Enter 4 Digit Code"
+            maxlength="4"
+            (input)="onCodeInput($event)"
+            [disabled]="isVerifying"
+            required>
+        </div>
+        <button 
+          type="submit"
+          class="verify-btn"
+          (click)="verifyEmail()"
+          [disabled]="isVerifying || !email || !verificationCode">
+          {{ isVerifying ? 'Verifying...' : 'Verify Email' }}
+        </button>
+        <div class="resend-section">
+          <button 
+            type="button"
+            class="resend-btn"
+            (click)="resendCode()"
+            [disabled]="isVerifying">
+            Resend Code
+          </button>
+        </div>
+      </form>
+    </div>
+    <div class="card-footer">
+      <a routerLink="/sign-in" class="back-link">Back To Sign-In</a>
+    </div>
+  </div>
+</div>

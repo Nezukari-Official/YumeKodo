@@ -1,0 +1,26 @@
+<div class="sign-up-body-main">
+    <div class="sign-up-body-inner">
+        <div class="sign-up-body-header">
+            <h2 class="sign-up-body-header-direct">Sign-Up</h2>
+        </div>
+        <div class="sign-up-nickname-collection">
+            <h3 class="nickname-title-direct">Enter Your Nickname:</h3>
+            <input class="nickname-input-direct" type="text" placeholder="..." [(ngModel)]="userData.nickname">
+        </div>
+        <div class="sign-up-email-collection">
+            <h3 class="email-title-direct">Enter Your Email:</h3>
+            <input class="email-input-direct" type="email" placeholder="..." [(ngModel)]="userData.email">
+        </div>
+        <div class="sign-up-password-collection">
+            <h3 class="password-title-direct">Enter Your Password:</h3>
+            <input class="password-input-direct" type="password" placeholder="..." [(ngModel)]="userData.password">
+        </div>
+        <div class="sign-up-password-repeat-collection">
+            <h3 class="password-repeat-title-direct">Repeat Your Password:</h3>
+            <input class="password-repeat-input-direct" type="password" placeholder="..." [(ngModel)]="repeatPassword">
+        </div>
+        <div class="sign-up-confirm-button-div">
+            <button class="btn-confirm-direct" (click)="onSubmit()">Confirm</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,216 @@
+<div class="games-page-container">
+  <div class="game-intro-main">
+    <div class="game-intro-inner">
+      <div class="search-container">
+        <input class="input-direct" type="text" placeholder="Search By Title, Description, Or Genre..."
+          [(ngModel)]="searchTerm" (input)="onSearchInput($event)" (keypress.enter)="applySearch()">
+        <button class="search-button-direct" (click)="applySearch()">
+          Search
+        </button>
+        <button *ngIf="searchTerm || selectedGenre || selectedRating" class="clear-filters-btn" (click)="clearFilters()"
+          title="Clear All Filters">
+          Clear Filters
+        </button>
+      </div>
+      <div class="filter-controls">
+        <div class="filter-group">
+          <label for="genreFilter">Genres:</label>
+          <select id="genreFilter" class="filter-select" [(ngModel)]="selectedGenre" (change)="onGenreChange()">
+            <option value="">All Genres</option>
+            <option *ngFor="let genre of genres" [value]="genre">{{ genre }}</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label for="ratingFilter">Min Rating:</label>
+          <select id="ratingFilter" class="filter-select" [(ngModel)]="selectedRating" (change)="onRatingChange()">
+            <option value="0">Any Rating</option>
+            <option value="1">1+ Stars</option>
+            <option value="2">2+ Stars</option>
+            <option value="3">3+ Stars</option>
+            <option value="4">4+ Stars</option>
+            <option value="5">5 Stars Only</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="image-div">
+      <img class="image-direct" src="/assets/images/chibi-yume.png" alt="Chibi Yume">
+    </div>
+  </div>
+
+  <div class="title-content">
+    <h2 class="text-direct">
+      {{ searchTerm || selectedGenre || selectedRating ? 'Filtered Games (' + filteredGames.length + ')' : 'All Games'
+      }}
+    </h2>
+    <button *ngIf="canAddGames()" class="add-game-btn" (click)="openAddGameModal()" title="Add New Game">
+      + Add Game
+    </button>
+  </div>
+
+  <div class="modal-overlay" *ngIf="showAddGameModal" (click)="closeAddGameModal()"></div>
+
+  <div class="add-game-modal" *ngIf="showAddGameModal">
+    <div class="modal-header">
+      <h2>Add New Game</h2>
+      <button class="close-modal-btn" (click)="closeAddGameModal()">✕</button>
+    </div>
+
+    <div class="modal-body">
+      <div class="form-group">
+        <label for="gameTitle">Game Title *</label>
+        <input id="gameTitle" type="text" class="form-input" [(ngModel)]="newGame.title" placeholder="Enter game title"
+          maxlength="100">
+      </div>
+
+      <div class="form-group">
+        <label for="gameDescription">Description *</label>
+        <textarea id="gameDescription" class="form-textarea" [(ngModel)]="newGame.description"
+          placeholder="Enter game description" rows="4" maxlength="500">
+      </textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="gameGenre">Genre *</label>
+        <select id="gameGenre" class="form-select" [(ngModel)]="newGame.genre">
+          <option value="">Select a genre</option>
+          <option *ngFor="let genre of genres" [value]="genre">{{ genre }}</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="gameThumbnail">Thumbnail URL *</label>
+        <input id="gameThumbnail" type="text" class="form-input" [(ngModel)]="newGame.thumbnailURL"
+          placeholder="https://example.com/image.jpg">
+        <small class="form-hint">Use GitHub raw URL or image hosting service</small>
+      </div>
+
+      <div class="form-group">
+        <label for="gameDownload">Download URL *</label>
+        <input id="gameDownload" type="text" class="form-input" [(ngModel)]="newGame.downloadURL"
+          placeholder="https://example.com/game.zip">
+        <small class="form-hint">Direct download link to game file</small>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button class="cancel-btn" (click)="closeAddGameModal()" [disabled]="isSubmittingGame">
+        Cancel
+      </button>
+      <button class="submit-btn" (click)="submitNewGame()" [disabled]="isSubmittingGame">
+        {{ isSubmittingGame ? 'Adding...' : 'Add Game' }}
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="isLoading" class="loading-container">
+    <div class="loading-spinner"></div>
+    <p class="loading-text">Loading games...</p>
+  </div>
+  <div *ngIf="errorMessage && !isLoading" class="error-container">
+    <div class="error-icon">⚠️</div>
+    <h3>Oops! Something went wrong</h3>
+    <p>{{ errorMessage }}</p>
+    <button class="retry-button" (click)="loadGames()">Try Again</button>
+  </div>
+  <div *ngIf="!isLoading && !errorMessage && filteredGames.length > 0" class="games-grid">
+    <div *ngFor="let game of filteredGames" class="game-card">
+      <button *ngIf="canAddGames()" class="delete-game-btn" (click)="deleteGame(game)" title="Delete Game">
+        🗑️
+      </button>
+      <div class="game-card-inner">
+        <div class="game-thumbnail">
+          <img [src]="game.thumbnailURL" [alt]="game.title" class="game-image" (error)="onImageError($event)">
+        </div>
+        <div class="game-info">
+          <h3 class="game-title">{{ game.title }}</h3>
+          <p class="game-genre">{{ game.genre }}</p>
+          <p class="game-description">{{ game.description }}</p>
+          <div class="rating-section">
+            <div class="stars-display">
+              <span *ngFor="let star of [1,2,3,4,5]; let i = index" class="star-icon"
+                [class.filled]="game.averageRating >= (i + 1)"
+                [class.half-filled]="game.averageRating > i && game.averageRating < (i + 1)"
+                (click)="rateGame(game, i + 1)" [title]="'Rate ' + (i + 1) + ' star' + (i > 0 ? 's' : '')">
+                ⭐
+              </span>
+              <span class="rating-text">
+                {{ game.averageRating | number:'1.1-1' }} ({{ game.totalRatings }} ratings)
+              </span>
+            </div>
+            <small *ngIf="!isLoggedIn" class="rating-hint">Sign in to rate games</small>
+          </div>
+          <div class="game-actions">
+            <button class="download-btn" (click)="downloadGame(game)" [disabled]="!isLoggedIn">
+              {{ isLoggedIn ? 'Download Game' : 'Sign in to Download' }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="!isLoading && !errorMessage && filteredGames.length === 0" class="no-results">
+    <div class="no-results-icon">🔍</div>
+    <h3>No games found</h3>
+    <p>Try adjusting your search or filters</p>
+    <button class="clear-search-button" (click)="clearFilters()">Show All Games</button>
+  </div>
+  <div class="comments-section">
+    <div class="comments-header">
+      <h2>Recent Comments</h2>
+    </div>
+    <div *ngIf="isLoggedIn" class="comment-form">
+      <div class="form-header">
+        <h3>Leave a Comment</h3>
+      </div>
+      <textarea class="comment-textarea" [(ngModel)]="newComment" placeholder="Share your thoughts about the games..."
+        rows="3" maxlength="500">
+      </textarea>
+      <div class="form-actions">
+        <span class="char-counter">{{ newComment.length }}/500</span>
+        <button class="submit-comment-btn" (click)="submitComment()"
+          [disabled]="!newComment.trim() || isSubmittingComment">
+          {{ isSubmittingComment ? 'Posting...' : 'Post Comment' }}
+        </button>
+      </div>
+    </div>
+    <div class="comments-list">
+      <div *ngFor="let comment of comments" class="comment-card">
+        <div class="comment-header">
+          <div class="comment-game-info">
+            <span class="comment-game-title">Commentary to Game "{{ getGameTitle(comment.gameId) }}"</span>
+            <div class="comment-rating">
+              <span *ngFor="let star of [1,2,3,4,5]" class="comment-star"
+                [class.filled]="getUserRatingForGame(comment.accountId, comment.gameId) >= star">
+                ⭐
+              </span>
+            </div>
+          </div>
+          <div class="comment-author">
+            By <strong>{{ comment.nickname }}</strong>
+            <span class="role-badge" [ngClass]="'role-' + comment.role.toLowerCase()">
+              {{ comment.role }}
+            </span>
+          </div>
+        </div>
+        <div class="comment-content">
+          <p>{{ comment.commentText }}</p>
+        </div>
+        <div class="comment-footer">
+          <span class="comment-date">{{ comment.createdAt | date:'short' }}</span>
+          <button *ngIf="canDeleteComment(comment)" class="delete-comment-btn"
+            (click)="deleteComment(comment.commentId)" title="Delete comment">
+            🗑️ Delete
+          </button>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="comments.length === 0" class="no-comments">
+      <div class="no-comments-icon">💬</div>
+      <h3>No comments yet</h3>
+      <p *ngIf="isLoggedIn">Be the first to share your thoughts!</p>
+      <p *ngIf="!isLoggedIn">Sign in to leave comments and see what others think.</p>
+    </div>
+  </div>
+</div>

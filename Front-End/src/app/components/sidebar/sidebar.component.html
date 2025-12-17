@@ -1,0 +1,92 @@
+<div *ngIf="isLoggedIn" class="profile-button-container">
+  <button class="profile-button" (click)="toggleSidebar()" [class.active]="isOpen">
+    <div class="profile-avatar">
+      <img [src]="currentUser?.profileImageURL || '/assets/images/default-avatar.png'" [alt]="currentUser?.nickname"
+        class="avatar-image">
+    </div>
+    <span class="profile-name">{{ currentUser?.nickname }}</span>
+    <span class="profile-arrow" [class.rotated]="isOpen">▼</span>
+  </button>
+</div>
+
+<div class="sidebar-overlay" [class.active]="isOpen" (click)="closeSidebar()">
+</div>
+
+<div class="profile-sidebar" [class.open]="isOpen">
+  <div class="sidebar-header">
+    <button class="close-button" (click)="closeSidebar()">✕</button>
+  </div>
+
+  <div class="sidebar-content">
+    <div class="profile-picture">
+      <img [src]="currentUser?.profileImageURL || '/assets/images/default-avatar.png'" [alt]="currentUser?.nickname"
+        class="profile-image">
+    </div>
+
+    <div class="user-info">
+      <h3 class="user-nickname">{{ currentUser?.nickname }}</h3>
+      <p class="user-email">{{ currentUser?.email }}</p>
+      <span class="role-badge" [ngClass]="getRoleBadgeClass(currentUser?.role)">
+        {{ getRoleDisplayName(currentUser?.role) }}
+      </span>
+    </div>
+    <div class="sidebar-actions">
+      <button class="action-button edit-button" (click)="editAccount()">
+        <span class="button-icon">✏️</span>
+        Edit Account
+      </button>
+
+      <button class="action-button logout-button" (click)="logout()">
+        <span class="button-icon">🚪</span>
+        Log Out
+      </button>
+    </div>
+  </div>
+</div>
+<div class="edit-modal-overlay" *ngIf="showEditModal" (click)="closeEditModal()"></div>
+
+<div class="edit-account-modal" *ngIf="showEditModal">
+  <div class="modal-header">
+    <h2>Edit Profile</h2>
+    <button class="close-modal-btn" (click)="closeEditModal()">✕</button>
+  </div>
+  <div class="modal-body">
+    <div *ngIf="updateMessage" class="update-message success">
+      ✓ {{ updateMessage }}
+    </div>
+    <div *ngIf="updateError" class="update-message error">
+      ⚠ {{ updateError }}
+    </div>
+    <form class="edit-form" *ngIf="!updateMessage">
+      <div class="form-group">
+        <label for="editNickname">Nickname</label>
+        <input id="editNickname" type="text" class="form-input" [(ngModel)]="editForm.nickname" name="nickname"
+          placeholder="Enter your nickname" maxlength="50" [disabled]="isUpdating">
+      </div>
+      <div class="form-group">
+        <label for="editEmail">Email</label>
+        <input id="editEmail" type="email" class="form-input" [(ngModel)]="editForm.email" name="email"
+          placeholder="your.email@example.com" [disabled]="isUpdating">
+      </div>
+      <div class="form-group">
+        <label for="editProfileImage">Profile Image URL</label>
+        <input id="editProfileImage" type="text" class="form-input" [(ngModel)]="editForm.profileImageURL"
+          name="profileImageURL" placeholder="https://example.com/avatar.jpg" [disabled]="isUpdating">
+        <small class="form-hint">Leave empty for default avatar</small>
+      </div>
+      <div class="profile-preview" *ngIf="editForm.profileImageURL">
+        <p class="preview-label">Preview:</p>
+        <img [src]="editForm.profileImageURL" alt="Preview" class="preview-image"
+          (error)="editForm.profileImageURL = ''">
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer" *ngIf="!updateMessage">
+    <button class="cancel-btn" (click)="closeEditModal()" [disabled]="isUpdating">
+      Cancel
+    </button>
+    <button class="save-btn" (click)="saveProfileChanges()" [disabled]="isUpdating">
+      {{ isUpdating ? 'Saving...' : 'Save Changes' }}
+    </button>
+  </div>
+</div>
