@@ -185,7 +185,7 @@
 
 		- Step 3:
 
-		Launch The Command: "npm i" OR "npm install"
+		Run The Command: "npm i" OR "npm install"
 
 		- Step 4:
 
@@ -203,6 +203,7 @@
 
 	| Nezukari
 	| GitHub: @Nezukari-Official
+
 
 
 
